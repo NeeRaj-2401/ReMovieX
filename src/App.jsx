@@ -19,21 +19,28 @@ function App() {
   const dispatch = useDispatch()
   const { url } = useSelector((state) => state.home)
 
-  useEffect(
-    () => {
-      apitesting();
+  useEffect( () => {
+      fetchApiConfig();
     }, [])
 
-  const apitesting = () => {
-    fetchDataFromApi('/movie/popular').then(
+  const fetchApiConfig = () => {
+    fetchDataFromApi('/configuration').then(
       (res) => {
         console.log(res);
-        dispatch(getApiCofiguration(res));
+        const url = {
+          // basically {https://image.tmdb.org/t/p/} + original + {/kgATFkG4SDyengNMmCuwmj7igWW.jpg}
+          backdrop: res.images.secure_base_url + "original",
+          poster: res.images.secure_base_url + "original",
+          profile: res.images.secure_base_url + "original",
+        }
+        dispatch(getApiCofiguration(url));
       });
   };
 
   return (
+
     <BrowserRouter>
+      {/* <Header /> */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/:mediaType/:id" element={<Details />} />
@@ -41,6 +48,7 @@ function App() {
         <Route path="/explore/:mediaType" element={<Explore />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
+      {/* <Footer /> */}
     </BrowserRouter>
   )
 }

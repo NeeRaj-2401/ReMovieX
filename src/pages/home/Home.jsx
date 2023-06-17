@@ -1,9 +1,12 @@
 import React from 'react'
+import HeroBanner from './heroBanner/HeroBanner';
 import "./style.scss";
 
 function Home() {
   return (
-    <div>Home</div>
+    <div className='homePage'>
+       <HeroBanner/> 
+    </div>
   )
 }
 

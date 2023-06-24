@@ -14,7 +14,8 @@ import CircleRating from "../circleRating/CircleRating";
 
 import "./style.scss";
 
-function Carousel({ data, loading }) {
+// similar to data & loading, this mediaType is coming from popular.jsx becuase their api response doesn't contain media type by defualt
+function Carousel({ data, loading, mediaType }) { 
 
   const carouselContainer = useRef();
   const navigate = useNavigate();
@@ -62,7 +63,7 @@ function Carousel({ data, loading }) {
                 const posterUrl = item.poster_path ? url.poster + item.poster_path : PosterFallback;
                 return (
                   <div className="carouselItem" key={item.id}
-                  onClick={()=> navigate(`/${item.media_type}/${item.id}`)}
+                  onClick={()=> navigate(`/${item.media_type || mediaType}/${item.id}`)}
                   // for e.g. http://localhost:5173 + /movie/697843
                   >
                     <div className="posterBlock">

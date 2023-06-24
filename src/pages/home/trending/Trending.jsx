@@ -10,7 +10,7 @@ function Trending() {
 
     const [endpoint, setEndpoint] = useState("day");
 
-    // const { data, loading } = useFetch(`/trending/movie/${endpoint}`);
+    const { data, loading } = useFetch(`/trending/all/${endpoint}`);
 
     const onTabChange = (tab) => {
         setEndpoint(tab === "Day" ? "day" : "week");
@@ -22,7 +22,7 @@ function Trending() {
                 <span className="carouselTitle">Trending</span>
                 <SwitchTabs data={["Day", "Week"]} onTabChange={onTabChange} />
             </ContentWrapper>
-            {/* <Carousel data={data?.results} loading={loading} /> */}
+            <Carousel data={data?.results} loading={loading} />
         </div>
     )
 }

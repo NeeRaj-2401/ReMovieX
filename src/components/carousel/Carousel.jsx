@@ -61,7 +61,10 @@ function Carousel({ data, loading }) {
 
                 const posterUrl = item.poster_path ? url.poster + item.poster_path : PosterFallback;
                 return (
-                  <div className="carouselItem" key={item.id}>
+                  <div className="carouselItem" key={item.id}
+                  onClick={()=> navigate(`/${item.media_type}/${item.id}`)}
+                  // for e.g. http://localhost:5173 + /movie/697843
+                  >
                     <div className="posterBlock">
                       <Img src={posterUrl} />
                       <CircleRating
